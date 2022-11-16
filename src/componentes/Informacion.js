@@ -56,9 +56,6 @@ const Informacion = () => {
 
 const ContenedorInformacion = styled.div`
     height: 90%;
-    @media screen and (max-width: 575px){
-        height: 60%;
-    }
 
     img{
         display: block;
