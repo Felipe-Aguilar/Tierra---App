@@ -1,17 +1,21 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import tierra from '../assets/Tierra.png';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { NavLink, Route, Routes } from 'react-router-dom';
 import InicioTierra from './InicioTierra';
 import Caracteristicas from './Caracteristicas';
 import Tiempo from './Tiempo';
 import SistemaSolar from './SistemaSolar';
 import Error404 from './Error404';
+import PlanetasSistema from './PlanetasSistema';
 
 const Informacion = () => {
 
+    const [mundos, cambiarMundos] = useState(false);
+
     return ( 
+        mundos ? 
         <ContenedorInformacion className='row align-items-center'>
             <div className='col-12 col-md-6'>
                 <motion.img 
@@ -32,7 +36,7 @@ const Informacion = () => {
                 />
             </div>
 
-            <div className='col-12 col-md-6 p-md-0 mt-2 mt-md-0'>
+            <div className='col-12 col-md-6 p-md-1 mt-2 mt-md-0'>
                 <h2>Tierra</h2>
                 <nav>
                     <NavLink to="/">Tierra</NavLink>
@@ -40,22 +44,28 @@ const Informacion = () => {
                     <NavLink to="/tiempo">Tiempo</NavLink>
                     <NavLink to="/sistemaSolar">Sistema Solar</NavLink>
                 </nav>
-                <div className='mt-4 p-2 text-'>
+                <div className='mt-4 p-2' style={{height: '280px'}}>
                     <Routes>
                         <Route path='*' element={<Error404 />}/>
                         <Route path='/' element={<InicioTierra />}/>
                         <Route path='/caracteristicas' element={<Caracteristicas />}/>
                         <Route path='/tiempo' element={<Tiempo />}/>
-                        <Route path='/sistemaSolar' element={<SistemaSolar />}/>
+                        <Route path='/sistemaSolar' element={<SistemaSolar cambiarMundos = {cambiarMundos}/>}/>
                     </Routes>
                 </div>
             </div>
         </ContenedorInformacion>
+        :
+        <ContenedorSistemaSolar className='row align-items-center'>
+            <PlanetasSistema />
+        </ContenedorSistemaSolar>
+        
     );
 }
 
 const ContenedorInformacion = styled.div`
     height: 90%;
+
 
     img{
         display: block;
@@ -111,6 +121,10 @@ const ContenedorInformacion = styled.div`
             font-size: 14px;
         }
     }
+`;
+
+const ContenedorSistemaSolar = styled.div`
+    height: 90%;
 `;
 
 export default Informacion;

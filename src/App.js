@@ -8,12 +8,12 @@ import { BrowserRouter } from 'react-router-dom';
 const App = () => {
   return (
     <BrowserRouter>
-      <div className='vh-100'>
+      <Contenedor100 className='vh-100'>
         <Estrellas className='container-fluid h-100 pb-2 pb-md-0'>
           <Header />
           <Informacion />
         </Estrellas>
-      </div>
+      </Contenedor100>
     </BrowserRouter>
   );
 }
@@ -22,6 +22,12 @@ const Estrellas = styled.div`
   background-image: url(${FondoEstrellas});
   background-position: center;
   background-size: cover;
+`;
+
+const Contenedor100 = styled.div`
+  @media screen and (max-width: 575px){
+        height: auto!important;
+    }
 `;
 
 export default App;
