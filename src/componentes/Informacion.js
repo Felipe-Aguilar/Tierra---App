@@ -12,7 +12,7 @@ import PlanetasSistema from './PlanetasSistema';
 
 const Informacion = () => {
 
-    const [mundos, cambiarMundos] = useState(false);
+    const [mundos, cambiarMundos] = useState(true);
 
     return ( 
         mundos ? 
